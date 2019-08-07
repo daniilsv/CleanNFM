@@ -1,13 +1,14 @@
 const config = require("./configs");
+process.title = config.process;
 
-const fastify = require('fastify')({
+const fastify = require('fastify/fastify')({
   logger: {
     prettyPrint: true,
   },
   ignoreTrailingSlash: true
 });
 
-const AutoLoad = require('fastify-autoload');
+const AutoLoad = require('fastify-autoload/fastify-autoload');
 
 fastify.register(AutoLoad, {
   dir: require('path').join(__dirname, 'plugins'),

@@ -24,7 +24,7 @@
     "fastify-rbac": "^1.0.2"
   },
   "scripts": {
-    "start": "nodemon ./app/index.js"
+    "start": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
