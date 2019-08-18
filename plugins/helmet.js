@@ -1,5 +1,5 @@
-const fp = require("fastify-plugin/fastify-plugin");
+const fp = require("fastify-plugin");
 module.exports = fp(function (fastify, opts, next) {
-  fastify.register(require('fastify-helmet'), { hidePoweredBy: { setTo: 'KIT PIDOR' } })
+  fastify.register(require('fastify-helmet'), { hidePoweredBy: true })
   next()
 });

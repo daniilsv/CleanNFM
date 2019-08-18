@@ -1,18 +1,6 @@
 const Mongoose = require("mongoose");
 const Schema = Mongoose.Schema;
 
-/**
- * @typedef UserName
- * @property {string} first.required - имя
- * @property {string} second - фамилия
- */
-/**
- * @typedef User
- * @property {string} _id.required - id
- * @property {string} email - E-mail
- * @property {string} phone - телефон
- * @property {UserName} name - имя
- */
 const UserSchema = new Schema(
   {
     email: String,

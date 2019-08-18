@@ -1,21 +1,19 @@
-const config = require("../configs");
-const fp = require("fastify-plugin/fastify-plugin");
+const fp = require("fastify-plugin");
 module.exports = fp(function (fastify, opts, next) {
   fastify.register(require('fastify-swagger'), {
     routePrefix: '/documentation',
     exposeRoute: true,
     swagger: {
       info: {
-        title: config.title,
-        description: config.description,
-        version: config.version,
+        title: fastify.config.title,
+        description: fastify.config.description,
+        version: fastify.config.version,
       },
       externalDocs: {
-        url: 'https://itis.team',
-        description: 'Find more info here'
+        url: 'https://itis.team'
       },
-      host: config.web_host + ":" + config.web_port,
-      schemes: [config.web_scheme],
+      host: fastify.config.web_host + ":" + fastify.config.web_port,
+      schemes: [fastify.config.web_scheme],
       consumes: ['application/json'],
       produces: ['application/json'],
       tags: [

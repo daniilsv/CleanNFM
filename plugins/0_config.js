@@ -1,5 +1,5 @@
 const fp = require("fastify-plugin");
 module.exports = fp(function (fastify, opts, next) {
-    fastify.register(require('fastify-formbody'));
+    fastify.decorate("config", require('rob-config').properties());
     next()
 });

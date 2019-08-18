@@ -1,4 +1,4 @@
-const fp = require("fastify-plugin/fastify-plugin");
+const fp = require("fastify-plugin");
 module.exports = fp(function (fastify, opts, next) {
   fastify.register(require('fastify-compress'), { global: true, inflateIfDeflated: true });
   next()

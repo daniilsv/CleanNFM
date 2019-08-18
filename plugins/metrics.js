@@ -1,5 +1,5 @@
-const fp = require("fastify-plugin/fastify-plugin");
+const fp = require("fastify-plugin");
 module.exports = fp(function (fastify, opts, next) {
-    fastify.register(require('fastify-metrics/dist/index'), {endpoint: '/metrics'});
+  fastify.register(require('fastify-metrics'), { endpoint: '/metrics' });
   next()
 });

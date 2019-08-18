@@ -1,29 +1,34 @@
-const config = require("./configs");
-process.title = config.process;
-
-const fastify = require('fastify/fastify')({
-  logger: {
-    prettyPrint: true,
-  },
-  ignoreTrailingSlash: true
+const log = require('pino')({
+  level: 'info',
+  prettyPrint: {
+    translateTime: true
+  }
+})
+const fastify = require('fastify')({
+  logger: log,
 });
 
-const AutoLoad = require('fastify-autoload/fastify-autoload');
+const path = require('path');
+const AutoLoad = require('fastify-autoload');
 
 fastify.register(AutoLoad, {
   dir: require('path').join(__dirname, 'plugins'),
   options: {}
 });
 
-fastify.register(AutoLoad, {
-  dir: require('path').join(__dirname, 'services'),
-  options: {}
-});
 
-fastify.listen({port: config.web_port, host: config.web_host}, function () {
+const baseServicesFolder = path.join(__dirname, 'services').replace(/\\/g, '/');
+for (const folder of require("glob").sync(baseServicesFolder + "/**/"))
+  fastify.register(AutoLoad, {
+    dir: folder,
+    options: {
+      prefix: folder.replace(baseServicesFolder, '')
+    }
+  });
+
+fastify.ready(function () {
+  process.title = fastify.config.process;
   fastify.swagger();
-});
-
-fastify.ready(() => {
-  log.i(fastify.printRoutes());
+  Log(fastify.printRoutes());
+  fastify.listen({ port: fastify.config.web_port, host: fastify.config.web_host });
 });
