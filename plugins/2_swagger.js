@@ -1,7 +1,7 @@
 const fp = require("fastify-plugin");
 module.exports = fp(function (fastify, opts, next) {
   fastify.register(require('fastify-swagger'), {
-    routePrefix: '/documentation',
+    routePrefix: '/api-docs',
     exposeRoute: true,
     swagger: {
       info: {
