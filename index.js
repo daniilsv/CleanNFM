@@ -1,12 +1,6 @@
-const log = require('pino')({
-  level: 'info',
-  prettyPrint: {
-    translateTime: true
-  }
-})
-const fastify = require('fastify')({
-  logger: log,
-});
+const fastify = require('fastify')();
+
+global.__basedir = __dirname;
 
 const path = require('path');
 const AutoLoad = require('fastify-autoload');
@@ -29,6 +23,6 @@ for (const folder of require("glob").sync(baseServicesFolder + "/**/"))
 fastify.ready(function () {
   process.title = fastify.config.process;
   fastify.swagger();
-  Log(fastify.printRoutes());
-  fastify.listen({ port: fastify.config.web_port, host: fastify.config.web_host });
+  fastify.blipp();
+  fastify.listen({ port: fastify.config.web_port });
 });

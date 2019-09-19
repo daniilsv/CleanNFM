@@ -9,9 +9,6 @@ module.exports = fp(function (fastify, opts, next) {
         description: fastify.config.description,
         version: fastify.config.version,
       },
-      externalDocs: {
-        url: 'https://itis.team'
-      },
       host: fastify.config.web_host + ":" + fastify.config.web_port,
       schemes: [fastify.config.web_scheme],
       consumes: ['application/json'],
