@@ -1,13 +1,13 @@
-# CleanNSFM
+# CleanNFM
 
-NodeJs + SocketIo + Fastify + MongoDb
+NodeJs + Fastify + MongoDb
 
 Clean version
 
 ## Installation
 
 ```sh
-$ git clone https://github.com/daniilsv/CleanNSFM
+$ git clone https://github.com/daniilsv/CleanNFM
 ```
 
 ## Quick Start
